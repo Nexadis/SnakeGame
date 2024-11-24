@@ -13,5 +13,4 @@
 
 ![Menu](resources/menu.png)
 
-
-![Game](resources/game-snake.webm)
+![Game](resources/game-snake-optimized.gif)
