@@ -1,0 +1,171 @@
+body {
+  background-color: #F8F8F8;
+  margin: 0;
+  padding: 0;
+  font-family: "Parkinsans", sans-serif;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template: "header" auto "main" 1fr "footer" auto/1fr;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.header {
+  grid-area: header;
+  font-size: 30px;
+  font-weight: 900;
+  text-align: center;
+  padding: 1em;
+}
+
+.main {
+  grid-area: main;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+.footer {
+  grid-area: footer;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  border: solid 2px #BF8730;
+  justify-content: space-evenly;
+  border-radius: 0 0 10px 10px;
+}
+
+.buttons {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.params {
+  display: grid;
+  grid-template: "width height" 1fr "speed speed" auto/1fr 1fr;
+  justify-items: center;
+  align-content: space-around;
+}
+
+.params > * {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.params__width {
+  grid-area: width;
+}
+
+.params__height {
+  grid-area: height;
+}
+
+.input_num {
+  background-color: #F8F8F8;
+  max-width: 5em;
+  border-radius: 4px;
+}
+
+.input_num:valid {
+  border: solid 2px #24913C;
+}
+
+.input_num:invalid {
+  border: solid 2px #E60042;
+}
+
+.params__speed {
+  grid-area: speed;
+  margin: 2em;
+}
+
+.button {
+  display: block;
+  background: #207E62;
+  height: 40px;
+  width: 200px;
+  margin: 10px;
+  border-radius: 5px;
+  color: #F8F8F8;
+  border: solid 2px #000;
+  font-weight: 700;
+  font-size: 16px;
+  transition-duration: 0.1s;
+}
+
+.button:hover {
+  border-width: 4px;
+}
+
+.button:active {
+  scale: 1.1;
+}
+
+.game {
+  display: none;
+  flex-direction: column;
+  align-self: center;
+  justify-self: center;
+}
+
+.game__point {
+  height: 20px;
+  width: 20px;
+  margin: 0;
+  border: solid 1px black;
+  background-color: #F8F8F8;
+}
+
+.game__line {
+  display: flex;
+  flex-direction: row;
+}
+
+.snake__head {
+  background-color: #BF8730;
+}
+
+.snake__body {
+  background-color: #207E62;
+}
+
+.apple {
+  background-color: #B12C49;
+}
+
+.score {
+  border: solid 3px #B12C49;
+  align-items: center;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 0.7em;
+  margin: 0;
+  border-radius: 10px 10px 0 0;
+}
+
+.about {
+  display: flex;
+  flex-direction: row;
+  font-size: 20px;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.about > p {
+  display: inline-block;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,207 @@
+// https://colorscheme.ru/#3831Tw0w0w0w0
+$mainColor: #207E62;
+$secondColor-a: #BF8730;
+$secondColor-b: #B12C49;
+
+$errorColor: #E60042;
+$correctColor: #24913C;
+
+$backgroundColor: #F8F8F8;
+
+//box 
+$buttonHeight: 40px;
+$buttonWidth: 200px;
+
+
+//border
+$borderThickness: 7px;
+$borderColor: $mainColor;
+
+//animation speed
+$transition: .1s;
+
+$fonts: "Parkinsans", sans-serif;
+
+body {
+  background-color: $backgroundColor;
+  margin: 0;
+  padding: 0;
+  font-family: $fonts;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template:
+    "header" auto
+    "main" 1fr
+    "footer" auto / 1fr;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.header {
+  grid-area: header;
+  font-size: 30px;
+  font-weight: 900;
+  text-align: center;
+  padding: 1em;
+}
+
+.main {
+  grid-area: main;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+.footer {
+  grid-area: footer;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  border: solid 2px $secondColor-a;
+  justify-content: space-evenly;
+
+  border-radius: 0 0 10px 10px;
+}
+
+.buttons {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.params {
+  display: grid;
+  grid-template:
+    "width height" 1fr
+    "speed speed" auto /1fr 1fr;
+
+  justify-items: center;
+  align-content: space-around;
+}
+
+.params>* {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.params__width {
+  grid-area: width;
+}
+
+.params__height {
+  grid-area: height;
+}
+
+.input_num {
+  background-color: $backgroundColor;
+  max-width: 5em;
+  border-radius: 4px;
+}
+
+.input_num:valid {
+  border: solid 2px $correctColor;
+}
+
+.input_num:invalid {
+  border: solid 2px $errorColor;
+}
+
+
+.params__speed {
+  grid-area: speed;
+  margin: 2em;
+}
+
+.button {
+  display: block;
+  background: $mainColor;
+  height: $buttonHeight;
+  width: $buttonWidth;
+  margin: 10px;
+  border-radius: 5px;
+  color: $backgroundColor;
+  border: solid 2px #000;
+  font-weight: 700;
+  font-size: 16px;
+
+  transition-duration: $transition;
+}
+
+
+.button:hover {
+  border-width: 4px;
+}
+
+.button:active {
+  scale: 1.1;
+}
+
+
+.game {
+  display: none;
+  flex-direction: column;
+  align-self: center;
+  justify-self: center;
+}
+
+.game__point {
+  height: 20px;
+  width: 20px;
+  margin: 0;
+  border: solid 1px black;
+  background-color: $backgroundColor;
+}
+
+.game__line {
+  display: flex;
+  flex-direction: row;
+}
+
+.snake__head {
+  background-color: $secondColor-a;
+}
+
+.snake__body {
+  background-color: $mainColor;
+}
+
+.apple {
+  background-color: $secondColor-b;
+}
+
+.score {
+  border: solid 3px $secondColor-b;
+  align-items: center;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 0.7em;
+  margin: 0;
+  border-radius: 10px 10px 0 0;
+}
+
+
+.about {
+  display: flex;
+  flex-direction: row;
+  font-size: 20px;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.about>p {
+  display: inline-block;
+}
