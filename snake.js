@@ -1,4 +1,7 @@
 function initGame() {
+  const newGameButton = document.querySelector("#new-game-button")
+  const continueGameButton = document.querySelector("#continue-game-button")
+
   const widthInput = document.querySelector(".params__width > input");
   const heightInput = document.querySelector(".params__height > input");
   const speedInput = document.querySelector(".params__speed > input");
@@ -17,6 +20,45 @@ function initGame() {
     body: "snake__body",
   }
   const appleClass = "apple";
+
+  showScore();
+  let game;
+
+  newGameButton.addEventListener("click", () => {
+    console.info("starting game");
+
+    if (checkAndShakeInvalidInputs()) {
+      return
+    }
+
+    const speed = invertSpeed(speedInput)
+
+    game = new Game(
+      gameElement,
+      heightInput.value,
+      widthInput.value,
+      true,
+      speed);
+    gameWait(game);
+
+  });
+
+  continueGameButton.onclick = () => {
+    console.info("continue game");
+    if (typeof game == "undefined") {
+      return
+    }
+    gameWait(game)
+
+  }
+
+  document.querySelector("#reset-game-button").onclick = () => {
+    console.info("reset stats");
+    saveHighScore(0);
+    showScore();
+  };
+
+
 
   class Point {
     constructor(x, y) {
@@ -93,6 +135,7 @@ function initGame() {
       const next = this.nextCoord(head)
 
       if (containPoint(next, this.snake)) {
+        console.log(`bumping head x=${head.x} y=${head.y}, next x=${next.x} y=${next.y}`)
         return true
       }
 
@@ -112,7 +155,7 @@ function initGame() {
       this.score += 1;
       showScore(this.score);
 
-      this.apple = makeApple(this.table, this.snake, this.width, this.height)
+      this.apple = this.makeApple(this.table, this.snake, this.width, this.height)
       addPointClass(this.table, this.apple, appleClass);
     }
 
@@ -215,7 +258,7 @@ function initGame() {
 
         case moveDown:
           if (coord.y == this.height - 1) {
-            coord.y--;
+            coord.y = -1;
           }
           coord.y++;
           break;
@@ -229,7 +272,7 @@ function initGame() {
 
         case moveRight:
           if (coord.x == this.width - 1) {
-            coord.x = -1
+            coord.x = -1;
           }
           coord.x++;
           break;
@@ -353,32 +396,29 @@ function initGame() {
       })
   }
 
-  showScore();
-  let game;
-
-  document.querySelector("#new-game-button").onclick = () => {
-    console.info("starting game");
-    console.info(speedInput.max)
-
-    game = new Game(
-      gameElement,
-      heightInput.value,
-      widthInput.value,
-      true,
-      speedInput.value);
-    gameWait(game);
-
-  };
-
-  document.querySelector("#continue-game-button").onclick = () => {
-    console.info("continue game");
-    if (typeof game == "undefined") {
-      return
-    }
-    gameWait(game)
-
+  function invertSpeed(speedInput) {
+    return speedInput.max - speedInput.value + +speedInput.min
   }
+
+  function checkAndShakeInvalidInputs() {
+    let hasInvalid = false;
+
+    const inputs = document.querySelectorAll(".input_num:invalid");
+
+    for (const input of inputs) {
+      console.log(`${input.name} is invalid`)
+      hasInvalid = true;
+      input.classList.add("apply-shake");
+      input.addEventListener("animationend", (e) => {
+        input.classList.remove("apply-shake");
+      })
+    }
+    return hasInvalid;
+  }
+
+
 }
+
 
 
 document.addEventListener("DOMContentLoaded", initGame);
