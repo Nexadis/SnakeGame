@@ -155,7 +155,7 @@ function initGame() {
       this.score += 1;
       showScore(this.score);
 
-      this.apple = this.makeApple(this.table, this.snake, this.width, this.height)
+      this.apple = this.makeApple(this.snake);
       addPointClass(this.table, this.apple, appleClass);
     }
 
